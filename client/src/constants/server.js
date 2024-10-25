@@ -1,1 +1,1 @@
-export const server='http://localhost:7000'
+export const server='https://naxorand-assesment-api.onrender.com'
