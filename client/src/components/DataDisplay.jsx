@@ -15,7 +15,7 @@ const DataDisplay = () => {
         url = `${server}/api/user/v1/your-daily-history`;
         break;
       case "weekly":
-        url = `${server}api/user/v1/your-weekly-history`;
+        url = `${server}/api/user/v1/your-weekly-history`;
         break;
       case "monthly":
         url = `${server}/api/user/v1/your-monthly-history`;
