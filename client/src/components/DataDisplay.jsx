@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { server } from "../constants/server";
 
 const DataDisplay = () => {
   // State for selected period and data
@@ -11,13 +12,13 @@ const DataDisplay = () => {
     let url;
     switch (period) {
       case "daily":
-        url = "http://localhost:7000/api/user/v1/your-daily-history";
+        url = `${server}/api/user/v1/your-daily-history`;
         break;
       case "weekly":
-        url = "http://localhost:7000/api/user/v1/your-weekly-history";
+        url = `${server}api/user/v1/your-weekly-history`;
         break;
       case "monthly":
-        url = "http://localhost:7000/api/user/v1/your-monthly-history";
+        url = `${server}/api/user/v1/your-monthly-history`;
         break;
       default:
         return;
