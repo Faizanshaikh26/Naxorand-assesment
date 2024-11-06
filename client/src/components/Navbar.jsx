@@ -3,18 +3,15 @@ import { Link } from "react-router-dom";
 
 function Navbar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  
 
  
+  const user = JSON.parse(localStorage.getItem("user"));
 
-  const userEmail=localStorage.getItem("email")
 
-  // Logout function to clear localStorage and redirect to login
   const onLogout = () => {
-    // Clear user data from localStorage
     localStorage.removeItem("user");
     localStorage.removeItem("token");
-    window.location.href="/"
+    window.location.href = "/";
   };
 
   return (
@@ -34,12 +31,10 @@ function Navbar() {
           {/* Dropdown Menu */}
           {isDropdownOpen && (
             <div className="absolute left-[40px] mt-2 w-48 bg-white shadow-lg z-10">
-              {/* Individual boxes for each detail */}
-              
-              <div>
-                <div className="p-2 text-center border rounded-md mb-1">
-                  {userEmail}
-                </div>
+              <div className="p-2 text-center border rounded-md mb-1">
+                <p><strong>Name:</strong> {user?.firstName} {user?.lastName}</p>
+                <p><strong>Username:</strong> {user?.username}</p>
+                <p><strong>Email:</strong> {user?.email}</p>
               </div>
             </div>
           )}
@@ -48,14 +43,12 @@ function Navbar() {
         <div className="flex items-center space-x-6">
           <ul className="flex space-x-4 text-gray-600">
             <li>
-            
               <Link to="/history" className="hover:text-blue-600 transition duration-200">
                 History
               </Link>
             </li>
           </ul>
 
-          
           <button
             onClick={onLogout}
             className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-200"
