@@ -59,15 +59,21 @@ export const Login = async (req, res) => {
         .json({ success: false, message: "Please enter a valid password" });
     }
 
-    // Adding token
+    // Generate token
     const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, {
       expiresIn: "1d",
     });
 
-    return res.status(200).send({
+    // Send response with user data and token
+    return res.status(200).json({
       success: true,
       message: "User logged in successfully",
-      data: user,
+      data: {
+        email: user.email,
+        username: user.username,
+        firstName: user.firstName,
+        lastName: user.lastName
+      },
       token,
     });
   } catch (error) {
@@ -77,3 +83,4 @@ export const Login = async (req, res) => {
       .json({ success: false, message: "Internal Server Error" });
   }
 };
+
