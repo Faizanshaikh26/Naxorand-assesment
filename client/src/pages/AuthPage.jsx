@@ -25,9 +25,9 @@ const AuthPage = () => {
       if (isLogin) {
         const response = await axios.post(`${server}/api/auth/v1/login`, data);
         if (response.data.success) {
+          // Store full user information and token in localStorage
           login(response.data.token);
-          
-          localStorage.setItem("email", data.email);
+          localStorage.setItem("user", JSON.stringify(response.data.data));
           toast.success("Login successful!");
           navigate("/");
         } else {
